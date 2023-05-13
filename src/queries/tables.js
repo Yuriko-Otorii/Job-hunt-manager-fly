@@ -23,7 +23,8 @@
     next json,
     notes json,
     favorite BOOLEAN NOT NULL,
-    FOREIGN KEY (list_user_id) REFERENCES userInfo (user_id)
+    created_at timestamp NOT NULL DEFAULT NOW(),
+    FOREIGN KEY (list_user_id) REFERENCES userInfo (user_id) on delete cascade on update cascade
   );
   `
 
@@ -43,7 +44,7 @@
     today_declined VARCHAR(10) NOT NULL,
     post_message VARCHAR(70),
     post_create_date VARCHAR(50) NOT NULL,
-    FOREIGN KEY (post_user_id) REFERENCES userInfo (user_id)
+    FOREIGN KEY (post_user_id) REFERENCES userInfo (user_id) on delete cascade on update cascade
   );
   `
 
@@ -52,8 +53,8 @@
     likePost_id SERIAL UNIQUE PRIMARY KEY,
     likePost_user_id INT NOT NULL,
     likePost_post_id INT NOT NULL,
-    FOREIGN KEY (likePost_user_id) REFERENCES userInfo (user_id),
-    FOREIGN KEY (likePost_post_id) REFERENCES shareStatus (post_id)
+    FOREIGN KEY (likePost_user_id) REFERENCES userInfo (user_id) on delete cascade on update cascade,
+    FOREIGN KEY (likePost_post_id) REFERENCES shareStatus (post_id) on delete cascade on update cascade
   );
   `
 
@@ -64,7 +65,7 @@
     comment_post_id INT NOT NULL,
     comment VARCHAR(100) NOT NULL,
     comment_date VARCHAR(50) NOT NULL,
-    FOREIGN KEY (comment_user_id) REFERENCES userInfo (user_id),
-    FOREIGN KEY (comment_user_id) REFERENCES shareStatus (post_id)
+    FOREIGN KEY (comment_user_id) REFERENCES userInfo (user_id) on delete cascade on update cascade,
+    FOREIGN KEY (comment_user_id) REFERENCES shareStatus (post_id) on delete cascade on update cascade
   );
   `

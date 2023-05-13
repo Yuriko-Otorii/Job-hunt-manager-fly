@@ -1,11 +1,11 @@
 // const mysql = require('mysql2')
 
 // const pool = mysql.createPool({
-//   host: process.env.MYSQL_HOST,
-//   user: process.env.MYSQL_USER,
-//   password: process.env.MYSQL_PASS,
-//   database: process.env.MYSQL_DBNAME,
-//   port: process.env.MYSQL_PORT
+//     host: process.env.MYSQL_HOST,
+//     user: process.env.MYSQL_USER,
+//     password: process.env.MYSQL_PASS,
+//     database: process.env.MYSQL_DBNAME,
+//     port: process.env.MYSQL_PORT
 // })
 
 
@@ -69,7 +69,7 @@
 //       list_user_id INT NOT NULL,
 //       company_name VARCHAR(50) NOT NULL,
 //       location VARCHAR(50),
-//       company_email VARCHAR(50) NOT NULL,
+//       company_email VARCHAR(50),
 //       company_phone VARCHAR(50),
 //       company_website VARCHAR(100),
 //       position VARCHAR(50) NOT NULL,

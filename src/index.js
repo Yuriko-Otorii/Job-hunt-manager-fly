@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(methodOverride('_method'))
 
 //db connection
-// const dbConnection = require("./util/mysql");
-// const pool = require('./util/postgres')
+const dbConnection = require("./util/mysql");
+const pool = require('./util/postgres')
 const client = require('./util/neon')
 
 //import routes
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 })
 
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8080
 app.listen(PORT, async () => {
     console.log(`Server listening on port ${PORT}`)
 
@@ -50,10 +50,11 @@ app.listen(PORT, async () => {
     // Postgres
     // const res = await pool.connect()
     // if(res) console.log("Successful connection to the Postgres database")
-
-
+    
     // Neon
     await client.connect()
     const res = await client.query('SELECT $1::text as message', ['db connected!'])
     console.log(res.rows[0].message)
 })
+
+
