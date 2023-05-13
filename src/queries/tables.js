@@ -28,23 +28,23 @@
   `
 
   `
-    CREATE TABLE shareStatus (
-      post_id SERIAL UNIQUE PRIMARY KEY,
-      post_user_id INT NOT NULL,
-      total_applied VARCHAR(10) NOT NULL,
-      total_onprocess VARCHAR(10) NOT NULL,
-      total_noresponse VARCHAR(10) NOT NULL,
-      total_offered VARCHAR(10) NOT NULL,
-      total_declined VARCHAR(10) NOT NULL,
-      today_applied VARCHAR(10) NOT NULL,
-      today_onprocess VARCHAR(10) NOT NULL,
-      today_noresponse VARCHAR(10) NOT NULL,
-      today_offered VARCHAR(10) NOT NULL,
-      today_declined VARCHAR(10) NOT NULL,
-      post_message VARCHAR(70),
-      post_create_date VARCHAR(50) NOT NULL,
-      FOREIGN KEY (post_user_id) REFERENCES userInfo (user_id)
-    );
+  CREATE TABLE shareStatus (
+    post_id SERIAL UNIQUE PRIMARY KEY,
+    post_user_id INT NOT NULL,
+    total_applied VARCHAR(10) NOT NULL,
+    total_onprocess VARCHAR(10) NOT NULL,
+    total_noresponse VARCHAR(10) NOT NULL,
+    total_offered VARCHAR(10) NOT NULL,
+    total_declined VARCHAR(10) NOT NULL,
+    today_applied VARCHAR(10) NOT NULL,
+    today_onprocess VARCHAR(10) NOT NULL,
+    today_noresponse VARCHAR(10) NOT NULL,
+    today_offered VARCHAR(10) NOT NULL,
+    today_declined VARCHAR(10) NOT NULL,
+    post_message VARCHAR(70),
+    post_create_date VARCHAR(50) NOT NULL,
+    FOREIGN KEY (post_user_id) REFERENCES userInfo (user_id)
+  );
   `
 
   `
