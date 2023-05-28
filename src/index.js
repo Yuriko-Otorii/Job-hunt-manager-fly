@@ -59,8 +59,9 @@ app.listen(PORT, async () => {
 
     const client = await pool.connect();
     try {
-        const res = await client.query('SELECT version()');
-        console.log(res.rows[0]);
+        console.log("db connected");
+        // const res = await client.query('SELECT version()');
+        // console.log(res.rows[0]);
     } finally {
         client.release();
     }
