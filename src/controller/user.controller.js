@@ -2,7 +2,6 @@ const { login } = require("../model/user.model");
 const User = require("../model/user.model")
 
 const jwt = require("jsonwebtoken");
-// const bcrypt = require('bcrypt');
 const bcrypt = require('bcryptjs');
 const saltRounds = 10
 
@@ -12,7 +11,6 @@ exports.getSignupPage = (req, res, next) => {
 
 exports.postSignupInfo = (req, res, next) => {
     const { username, email, password } = req.body;
-    // const hassedPassword = bcrypt.hashSync(password, saltRounds);
 
     bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(password, salt, function(err, hash) {
@@ -32,22 +30,6 @@ exports.postSignupInfo = (req, res, next) => {
                 })
         });
     });
-
-
-    // const newUser = new User(username, email, hassedPassword)
-    // newUser.signup()
-    //     .then(() => {
-    //         return res.redirect('/')
-    //     })
-    //     .catch((err) => {
-    //         if(err.message.includes("userinfo_email_key")){
-    //             res.render('error', {message: "E-mail already exists.", btnMessage: "Back to sign up", url: "signup"})
-    //             console.log("E-mail already exists.");
-    //         }else{
-    //             res.render('error', {message: "Something wrong. Please try again", btnMessage: "Back to sign up", url: "signup"})
-    //             console.error(err.message);
-    //         }
-    //     })
 }
 
 exports.getLoginPage = (req, res, next) => {
@@ -82,26 +64,6 @@ exports.postLoginInfo = async (req, res, next) => {
                     res.redirect('/home')
                 }
             });
-
-            // bcrypt.compare(password, userPassFromDb, (err, result) => {
-            //     if(!result){
-            //         res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
-            //         console.log('Wrong password...');
-            //     }else{
-            //         console.log('Successfully logged in!');
-            //         const payload = {
-            //             user_id: response.rows[0].user_id,
-            //             username: response.rows[0].username,
-            //             email: response.rows[0].email,
-            //         }
-                                            
-            //         const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' })
-            //         res.cookie('token', token, { 
-            //             httpOnly: true,
-            //         });
-            //         res.redirect('/home')
-            //     }
-            // })
         }
     } catch (err) {
         console.error(err)
