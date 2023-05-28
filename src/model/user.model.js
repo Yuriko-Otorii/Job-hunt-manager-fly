@@ -1,7 +1,6 @@
 const db = require("../util/mysql");
 const pool = require('../util/postgres')
 const client = require('../util/neon')
-const bcrypt = require('bcrypt');
 
 module.exports = class User {
     constructor(username, email, password){
