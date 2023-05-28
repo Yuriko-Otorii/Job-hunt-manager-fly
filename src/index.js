@@ -18,7 +18,8 @@ app.use(methodOverride('_method'))
 //db connection
 const dbConnection = require("./util/mysql");
 const pool = require('./util/postgres')
-const client = require('./util/neon')
+// const client = require('./util/neon')
+const neonPool = require('./util/neon')
 
 //import routes
 const authRoute = require('./routes/auth.route');
@@ -52,9 +53,17 @@ app.listen(PORT, async () => {
     // if(res) console.log("Successful connection to the Postgres database")
     
     // Neon
-    await client.connect()
-    const res = await client.query('SELECT $1::text as message', ['db connected!'])
-    console.log(res.rows[0].message)
+    // await client.connect()
+    // const res = await client.query('SELECT $1::text as message', ['db connected!'])
+    // console.log(res.rows[0].message)
+
+    const client = await pool.connect();
+    try {
+        const res = await client.query('SELECT version()');
+        console.log(res.rows[0]);
+    } finally {
+        client.release();
+    }
 })
 
 

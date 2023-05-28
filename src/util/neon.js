@@ -1,9 +1,17 @@
-const { Client } = require('pg')
-const client = new Client({
+const { Client, Pool } = require('pg')
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true
+// })
+
+// module.exports = client;
+
+
+const neonPool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: true
-})
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
-module.exports = client;
-
-
+module.exports = neonPool;

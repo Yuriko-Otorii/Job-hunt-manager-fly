@@ -20,7 +20,7 @@ module.exports = class User {
     static login(email){
         const sql = `SELECT * FROM userinfo WHERE email = $1`
         try {
-            console.log(sql);
+            console.log(email);
             return client.query(sql, [email])            
         } catch (error) {
             console.log(error);
