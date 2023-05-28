@@ -208,7 +208,6 @@ const getUserAllList = (page, message, url, req, res) => {
         
             List.getUserInfoAndList(req.jwtPayload.user_id)
                 .then(data => {
-                    // console.log(data);
                     const userDatalist = data.rows
                     .filter((item) => item.list_user_id === req.jwtPayload.user_id)
                     if(userDatalist[0]){
@@ -251,8 +250,7 @@ const getUserAllList = (page, message, url, req, res) => {
                         
                         StatusPost.fetchSharePostById(req.params.postId)
                             .then(([statusPostData]) => {
-                                statusPostObj = statusPostData
-                                
+                                statusPostObj = statusPostData                                
                             })
                             .catch((err) => {
                                 console.error(err.message)

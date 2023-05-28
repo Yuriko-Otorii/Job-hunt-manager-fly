@@ -33,42 +33,40 @@ exports.getLoginPage = (req, res, next) => {
     res.render('login')
 }
 
-exports.postLoginInfo = (req, res, next) => {
+exports.postLoginInfo = async (req, res, next) => {
     const { email, password } = req.body;
+    try {
+        const response = await login(email);
+        if (response.rows.length === 0) {
+            res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
+            console.log("E-mail doesn't exist...");
+        } else {
+            const userPassFromDb = response.rows[0].password
+            bcrypt.compare(password, userPassFromDb, (err, result) => {
 
-    login(email)
-        .then((response) => {
-            if (response.rows.length === 0) {
-                res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
-                console.log("E-mail doesn't exist...");
-            } else {
-                const userPassFromDb = response.rows[0].password
-                bcrypt.compare(password, userPassFromDb, (err, result) => {
-
-                    if(!result){
-                        res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
-                        console.log('Wrong password...');
-                    }else{
-                        console.log('Successfully logged in!');
-                        const payload = {
-                            user_id: response.rows[0].user_id,
-                            username: response.rows[0].username,
-                            email: response.rows[0].email,
-                        }
-                                                
-                        const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' })
-                        res.cookie('token', token, { 
-                            httpOnly: true,
-                        });
-                        res.redirect('/home')
+                if(!result){
+                    res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
+                    console.log('Wrong password...');
+                }else{
+                    console.log('Successfully logged in!');
+                    const payload = {
+                        user_id: response.rows[0].user_id,
+                        username: response.rows[0].username,
+                        email: response.rows[0].email,
                     }
-                })
-            }
-        })
-        .catch((err) => {
-            console.error(err.message)
-            res.render('error', {message: "Something wrong in server.", btnMessage: "Back to home", url: "home"})
-        })
+                                            
+                    const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' })
+                    res.cookie('token', token, { 
+                        httpOnly: true,
+                    });
+                    res.redirect('/home')
+                }
+            })
+        }
+    } catch (err) {
+        console.error(err.message)
+        res.render('error', {message: "Something wrong in server.", btnMessage: "Back to home", url: "home"})
+    }
 }
 
 exports.checkToken = (req, res, next) => {
