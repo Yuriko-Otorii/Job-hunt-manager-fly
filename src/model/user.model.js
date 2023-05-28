@@ -19,7 +19,13 @@ module.exports = class User {
     
     static login(email){
         const sql = `SELECT * FROM userinfo WHERE email = $1`
-        return client.query(sql, [email])        
+        try {
+            console.log(sql);
+            return client.query(sql, [email])            
+        } catch (error) {
+            console.log(error);
+        }
+        // return client.query(sql, [email])        
     }
 
     static updateUsername(data, user_id){

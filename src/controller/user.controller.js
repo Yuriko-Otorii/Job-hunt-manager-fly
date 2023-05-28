@@ -36,14 +36,16 @@ exports.getLoginPage = (req, res, next) => {
 exports.postLoginInfo = async (req, res, next) => {
     const { email, password } = req.body;
     try {
+        console.time("Login model")
         const response = await login(email);
+        console.timeEnd("Login model")
         if (response.rows.length === 0) {
             res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
             console.log("E-mail doesn't exist...");
         } else {
             const userPassFromDb = response.rows[0].password
+            console.time("Check password")
             bcrypt.compare(password, userPassFromDb, (err, result) => {
-
                 if(!result){
                     res.render('error', {message: "Wrong login information...", btnMessage: "Back to login", url: "/"})
                     console.log('Wrong password...');
@@ -62,11 +64,13 @@ exports.postLoginInfo = async (req, res, next) => {
                     res.redirect('/home')
                 }
             })
+            console.timeEnd("Check password")
         }
     } catch (err) {
-        console.error(err.message)
+        console.error(err)
         res.render('error', {message: "Something wrong in server.", btnMessage: "Back to home", url: "home"})
     }
+    
 }
 
 exports.checkToken = (req, res, next) => {
