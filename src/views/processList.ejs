@@ -104,7 +104,7 @@
               <% list.forEach((item) => { %>
                 <tr>
                   <% if(item.favorite === false){ %>
-                    <td id="starRow" class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td id="starRow" class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
                       <form action="/home/favupdate?_method=PUT" method="POST">
                         <button type="submit"><i class="fa-regular fa-star"></i></button>
                         <input type="hidden" id="starValue" name="favorite" value="<%= item.favorite %>">
@@ -112,7 +112,7 @@
                       </form>
                     </td>
                   <% }else{ %>
-                    <td id="starRow" class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td id="starRow" class="px-4 py-4 border-b border-gray-200 bg-white text-sm">
                       <form action="/home/favupdate?_method=PUT" method="POST">
                         <button type="submit"><i class="fa-regular fa-star text-yellow-300"></i></button>
                         <input type="hidden" id="starValue" name="favorite" value="<%= item.favorite %>">
@@ -120,23 +120,23 @@
                       </form>
                     </td>
                   <% } %>
-                  <td break-words class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-sm">
+                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm text-sm">
                     <p><%= item.company_name %></p>
                   </td>
-                  <td break-words class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-sm">
+                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm text-sm">
                     <p><%= item.position %></p>
                   </td>
-                  <td break-words class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-sm">
+                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm text-sm">
                     <p><%= item.job_type %></p>
                   </td>
                   
-                  <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-sm"><%= item.date_applied %></td>
-                  <td break-words class="px-5 py-5 border-b border-gray-200 bg-white text-sm max-w-xs text-sm">
+                  <td class="px-4 py-4 border-b border-gray-200 bg-white text-sm text-sm"><%= item.date_applied %></td>
+                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm max-w-xs text-sm">
                     <% item.next.next.forEach(eachNext => { %>
                       <%= eachNext %><br>
                     <% }) %>
                   </td>
-                  <td id="status_td" class="whitespace-nowrap	px-5 py-5 border-b border-gray-200 bg-white text-sm text-sm">
+                  <td id="status_td" class="whitespace-nowrap	px-4 py-4 border-b border-gray-200 bg-white text-sm text-sm">
                     <% if(item.status === "noResponse"){ %>
                       <span
                       class="relative inline-block px-3 py-1 font-semibold text-purple-900 leading-tight"
@@ -179,13 +179,18 @@
                       </span>
                     <% } %>
                   </td>
-                  <td break-words class="px-5 py-5 border-b border-gray-200 bg-white text-sm max-w-xs text-sm break-words">
-                    <% item.notes.notes.forEach(eachNote => { %>
-                      <%= eachNote %><br>
-                    <% }) %>
+                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm max-w-xs text-sm break-words">
+                    <% for(let i=0; i < 2; i++){ %>
+                      <p class="my-[.8rem]">
+                          <%= item.notes[i] %>
+                      </p>                     
+                    <% } %>
+                    <% if(item.notes.length > 2){ %>
+                      <p>…</p>
+                    <% } %>
                   </td>
                   <td
-                    class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right text-sm"
+                    class="px-4 py-4 border-b border-gray-200 bg-white text-sm text-right text-sm"
                   >
                   <div class="group inline-block relative">
                     <button

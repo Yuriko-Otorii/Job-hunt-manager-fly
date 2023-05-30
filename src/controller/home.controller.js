@@ -12,7 +12,23 @@ exports.getCompanyListPage = (req, res, next) => {
 
     List.fetchList(req.jwtPayload.user_id)
         .then(data => {
-            res.render('processList', { list: data.rows})
+            const mappedData = data.rows.map(eachListItem => {
+                const truncatedNotes = eachListItem.notes.notes.map(eachNote => {
+                    if(eachNote.length > 70){
+                        const str =eachNote.slice(0, 70)
+                        const replacedStr = str.replace(/.$/, "…")
+                        return replacedStr
+                    }else{
+                        return eachNote
+                    }
+                })
+                return {
+                    ...eachListItem,
+                    notes: truncatedNotes,
+                }
+            })
+            
+            res.render('processList', { list: mappedData})
         })
         .catch(err => {
             console.error(err.message)
