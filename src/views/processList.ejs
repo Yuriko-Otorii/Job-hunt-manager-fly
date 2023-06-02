@@ -53,7 +53,7 @@
         
       </div>
       <div class="inline-block min-w-full shadow-md rounded-lg">
-        <table class="min-w-full leading-normal table-fixed">
+        <table class="min-w-[100%] leading-normal">
           <thead>
             <tr>
               <th
@@ -61,22 +61,22 @@
               >
               </th>
               <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                width="15%" class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
               >
                 Company
               </th>
               <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                width="15%" class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
               >
                 Position
               </th>
               <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                width="10%" class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
               >
                 Job type
               </th>
               <th
-                class="whitespace-nowrap px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                width="10%" class="whitespace-nowrap px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
               >
                 Date applied
               </th>
@@ -86,16 +86,11 @@
                 Next
               </th>
               <th
-                class="statusTh px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                width="10%" class="statusTh px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
               >
                 Status
               </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
-              >
-                Note
-              </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100">
+              <th width="5%" class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100">
               </th>
             </tr>
           </thead>
@@ -178,16 +173,6 @@
                         ></span>
                         <span class="relative">Declined</span>
                       </span>
-                    <% } %>
-                  </td>
-                  <td break-words class="px-4 py-4 border-b border-gray-200 bg-white text-sm max-w-xs text-sm break-words">
-                    <% for(let i=0; i < 2; i++){ %>
-                      <p class="my-[.8rem]">
-                          <%= item.notes[i] %>
-                      </p>                     
-                    <% } %>
-                    <% if(item.notes.length > 2){ %>
-                      <p>…</p>
                     <% } %>
                   </td>
                   <td
