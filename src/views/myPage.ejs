@@ -2,7 +2,7 @@
 
 <div class="flex relative">
 <div class="overlay absolute inset-0 h-screen -z-50 bg-gradient-to-r from-green-400 to-blue-500 opacity-20"></div>
-    <div class="container m-10 box bg-white p-4 md:px-12 border-t-10 border-solid border-indigo-600 rounded-lg">
+    <div class="container m-10 mx-6 box bg-white p-4 md:px-12 border-t-10 border-solid border-indigo-600 rounded-lg">
         <div class="flex justify-center">
             <div class="flex flex-col justify-center">
                 <div class="mb-6 text-center flex flex-col items-center">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="flex flex-col">
-            <table class="my-14 mx-56 md:mx-auto sm-mx-auto">
+            <table class="hidden md:block my-14 mx-56 md:mx-auto sm-mx-auto">
                 <thead>
                     <tr>
                       <th class="px-5 py-3"></th>
@@ -53,6 +53,42 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="md:hidden my-14 mx-5">
+                <thead>
+                    <tr>
+                      <th class="px-5 py-3"></th>
+                      <th class="px-5 py-3"><p class="text-gray-400">today</p></th>
+                      <th class="px-5 py-3"><p class="text-gray-400">Total</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-3"><p class="text-xl font-bold">Applied: </p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= totalData.apply.length %></p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= todayData.apply.length %></p></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3"><p class="text-xl font-bold">On process: </p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= totalData.onProcess.length %></p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= todayData.onProcess.length %></p></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3"><p class="text-xl font-bold">No respomse: </p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= totalData.noResponse.length %></p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= todayData.noResponse.length %></p></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3"><p class="text-xl font-bold">Offered: </p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= totalData.offered.length %></p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= todayData.offered.length %></p></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3"><p class="text-xl font-bold">Declined: </p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= totalData.declined.length %></p></td>
+                        <td class="py-3"><p class="font-bold text-gray-700 text-xl text-center"><%= todayData.declined.length %></p></td>
+                    </tr>                    
+                </tbody>
+            </table>
             <div class="flex justify-center items-center m-auto">
                 <div class="flex gap-3">
                     <a href="/home">
@@ -71,10 +107,10 @@
     </div>
     
     <!-- Modal -->
-    <div id="edit-username-modal" tabindex="-1" class="modalWindow fixed z-50 flex justify-center items-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+    <div id="edit-username-modal" tabindex="-1" class="modalWindow fixed z-50 flex h-full justify-center items-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
         <div class="flex justify-center items-center w-full h-full m-auto relative max-w-md md:h-auto">
-            <div class="bgDiv absolute w-screen h-screen bg-gray-600 opacity-80"></div>
-            <div class="relative w-full h-full bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="absolute w-screen h-screen bg-gray-600 opacity-80"></div>
+            <div class="relative w-full h-fit md:h-full bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button" onclick="closeModal()" class="cancelBtm absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Close modal</span>
