@@ -66,6 +66,6 @@
     comment VARCHAR(100) NOT NULL,
     comment_date VARCHAR(50) NOT NULL,
     FOREIGN KEY (comment_user_id) REFERENCES userInfo (user_id) on delete cascade on update cascade,
-    FOREIGN KEY (comment_user_id) REFERENCES shareStatus (post_id) on delete cascade on update cascade
+    FOREIGN KEY (comment_post_id) REFERENCES shareStatus (post_id) on delete cascade on update cascade
   );
   `

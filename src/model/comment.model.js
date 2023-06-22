@@ -25,6 +25,8 @@ module.exports = class Comment {
             this.comment_date
         ]
 
+        console.log(params);
+
         return client.query(sql, params)
     }
 
